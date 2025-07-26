@@ -1,0 +1,447 @@
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ GRUPO_SEGURANCA="lucas-grupo"
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ NOME_INSTANCIA="instancia-lucasedson"
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ PAR_CHAVE="parchave-lucas"
+
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ SECURITY_GROUP_ID=$(aws ec2 create-security-group --group-name $GRUPO_SEGURANCA --description "Permitir HTTP" --query "GroupId" --output text
+> )
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ echo $SECURITY_GROUP_ID
+sg-03c3bbe373f73e2f8
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ aws ec2 authorize-security-group-ingress --group-id $SECURITY_GROUP_ID --protocol tcp --port 80 --cidr 0.0.0.0/0
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-0e1b7642424ffbbda",
+            "GroupId": "sg-03c3bbe373f73e2f8",
+            "GroupOwnerId": "757598908396",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIpv4": "0.0.0.0/0",
+            "SecurityGroupRuleArn": "arn:aws:ec2:us-east-1:757598908396:security-group-rule/sgr-0e1b7642424ffbbda"
+        }
+    ]
+}
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ aws ec2 run-instances --instance-type t2.micro --image-id $(aws ssm get-parameters-by-path --path "/aws/service/ami-amazon-linux-latest" --query
+> )
+Note: AWS CLI version 2, the latest major version of the AWS CLI, is now stable and recommended for general use. For more information, see the AWS CLI version 2 installation instructions at: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+aws: error: argument --query: expected one argument
+Note: AWS CLI version 2, the latest major version of the AWS CLI, is now stable and recommended for general use. For more information, see the AWS CLI version 2 installation instructions at: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+aws: error: argument --image-id: expected one argument
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ aws ec2 run-instances --instance-type t2.micro --image-id $(aws ssm get-parameters-by-path --path "/aws/service/ami-amazon-linux-latest" --query)
+Note: AWS CLI version 2, the latest major version of the AWS CLI, is now stable and recommended for general use. For more information, see the AWS CLI version 2 installation instructions at: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+aws: error: argument --query: expected one argument
+Note: AWS CLI version 2, the latest major version of the AWS CLI, is now stable and recommended for general use. For more information, see the AWS CLI version 2 installation instructions at: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+aws: error: argument --image-id: expected one argument
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ aws ec2 run-instances \
+--instance-type t2.micro \
+--image-id $(aws ssm get-parameters-by-path \
+--path "/aws/service/ami-amazon-linux-latest" \
+--query "Parameters[?ends_with(Name, 'al2023-ami-kernel-default-x86_64')].Value" \
+--output text) \
+--security-group-ids $SECURITY_GROUP_ID \
+--tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$NOME_INSTANCIA}]" \
+--key-name $PAR_CHAVE \
+--user-data "IyEvYmluL2Jhc2gKeXVtIC15IGluc3RhbGwgaHR0cGQKc3lzdGVtY3RsIGVuYWJsZSBodHRwZApzeXN0ZW1jdGwgc3RhcnQgaHR0cGQKZWNobyAnPGh0bWw+PGgxPk9sw6EgZG8gc2V1IHNlcnZpZG9yIHdlYiE8L2gxPjwvaHRtbD4nID4gL3Zhci93d3cvaHRtbC9pbmRleC5odG1sCg=="
+
+An error occurred (InvalidKeyPair.NotFound) when calling the RunInstances operation: The key pair 'parchave-lucas' does not exist
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ aws ec2 describe-key-pairs
+{
+    "KeyPairs": [
+        {
+            "KeyPairId": "key-01c38ca75e1b71a2a",
+            "KeyType": "rsa",
+            "Tags": [],
+            "CreateTime": "2025-07-26T00:12:15.179Z",
+            "KeyName": "parchave-joaomanoel",
+            "KeyFingerprint": "cf:de:f3:ab:38:69:4f:92:9b:27:88:5f:a8:86:38:9e:cf:66:5e:4b"
+        },
+        {
+            "KeyPairId": "key-05a56bb1fe4bb1291",
+            "KeyType": "rsa",
+            "Tags": [],
+            "CreateTime": "2025-07-25T23:46:24.953Z",
+            "KeyName": "parchave-gabriellarodrigues",
+            "KeyFingerprint": "ee:d9:05:60:0e:75:26:5b:e4:4c:e1:64:ee:4c:6c:bf:f7:0c:9a:55"
+        },
+        {
+            "KeyPairId": "key-07c19385a14d2b87f",
+            "KeyType": "rsa",
+            "Tags": [],
+            "CreateTime": "2025-07-26T00:29:13.098Z",
+            "KeyName": "parchave-flaviobastos",
+            "KeyFingerprint": "c5:0e:87:48:ef:5f:c6:5e:a3:64:f4:cc:00:d7:2e:14:78:20:cc:64"
+        },
+        {
+            "KeyPairId": "key-09829f2a4b94e1f9c",
+            "KeyType": "rsa",
+            "Tags": [],
+            "CreateTime": "2025-07-26T00:12:55.346Z",
+            "KeyName": "parchave-carolinarivaroli",
+            "KeyFingerprint": "49:7f:09:f2:b7:34:9d:c1:23:5b:06:fc:ed:9d:52:67:ca:c0:7e:44"
+        },
+        {
+            "KeyPairId": "key-08ee1dad0ad674985",
+            "KeyType": "rsa",
+            "Tags": [],
+            "CreateTime": "2025-07-26T00:24:04.197Z",
+            "KeyName": "web-server",
+            "KeyFingerprint": "fe:95:08:8e:3b:f6:e5:41:b5:75:bb:c0:3a:2c:3e:92:9b:5a:c2:06"
+        },
+        {
+            "KeyPairId": "key-07cf97a05d62e85eb",
+            "KeyType": "rsa",
+            "Tags": [],
+            "CreateTime": "2025-07-26T00:19:15.456Z",
+            "KeyName": "pk-webserver-lucasedson",
+            "KeyFingerprint": "bf:2b:62:9e:df:bc:e1:30:77:1e:6e:e9:2d:c1:24:c7:b1:45:7d:fb"
+        },
+        {
+            "KeyPairId": "key-0320e02286f513ee4",
+            "KeyType": "rsa",
+            "Tags": [],
+            "CreateTime": "2025-07-26T00:13:08.916Z",
+            "KeyName": "parchave-damaresemanoele",
+            "KeyFingerprint": "0c:10:48:e0:81:22:26:5d:f6:87:bf:db:2c:da:24:64:d7:08:c4:16"
+        }
+    ]
+}
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ PAR_CHAVE="pk-webserver-lucasedson"
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ aws ec2 run-instances --instance-type t2.micro --image-id $(aws ssm get-parameters-by-path \
+--path "/aws/service/ami-amazon-linux-latest" \
+--query "Parameters[?ends_with(Name, 'al2023-ami-kernel-default-x86_64')].Value" \
+--output text) --security-group-ids $SECURITY_GROUP_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$NOME_INSTANCIA}]" --key-name $PAR_CHAVE --user-data "IyEvYmluL2Jhc2gKeXVtIC15IGluc3RhbGwgaHR0cGQKc3lzdGVtY3RsIGVuYWJsZSBodHRwZApzeXN0ZW1jdGwgc3RhcnQgaHR0cGQKZWNobyAnPGh0bWw+PGgxPk9sw6EgZG8gc2V1IHNlcnZpZG9yIHdlYiE8L2gxPjwvaHRtbD4nID4gL3Zhci93d3cvaHRtbC9pbmRleC5odG1sCg=="
+{
+    "ReservationId": "r-021995ce276175984",
+    "OwnerId": "757598908396",
+    "Groups": [],
+    "Instances": [
+        {
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "c0de97eb-9ec7-45ca-a249-690ee1abbff6",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2025-07-26T23:34:33.000Z",
+                        "AttachmentId": "eni-attach-0c76aebc9f2be8455",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching",
+                        "NetworkCardIndex": 0
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupId": "sg-03c3bbe373f73e2f8",
+                            "GroupName": "lucas-grupo"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "0a:ff:ff:ed:58:47",
+                    "NetworkInterfaceId": "eni-0641fcfce78f563f9",
+                    "OwnerId": "757598908396",
+                    "PrivateDnsName": "ip-172-31-30-179.ec2.internal",
+                    "PrivateIpAddress": "172.31.30.179",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-30-179.ec2.internal",
+                            "PrivateIpAddress": "172.31.30.179"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-0e1c38be3fc126c45",
+                    "VpcId": "vpc-0ebec3083f1cec525",
+                    "InterfaceType": "interface",
+                    "Operator": {
+                        "Managed": false
+                    }
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-03c3bbe373f73e2f8",
+                    "GroupName": "lucas-grupo"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "instancia-lucasedson"
+                }
+            ],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "required",
+                "HttpPutResponseHopLimit": 2,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "BootMode": "uefi-preferred",
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default",
+                "RebootMigration": "default"
+            },
+            "CurrentInstanceBootMode": "legacy-bios",
+            "Operator": {
+                "Managed": false
+            },
+            "InstanceId": "i-071629c452ad76bec",
+            "ImageId": "ami-08a6efd148b1f7504",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "PrivateDnsName": "ip-172-31-30-179.ec2.internal",
+            "PublicDnsName": "",
+            "StateTransitionReason": "",
+            "KeyName": "pk-webserver-lucasedson",
+            "AmiLaunchIndex": 0,
+            "ProductCodes": [],
+            "InstanceType": "t2.micro",
+            "LaunchTime": "2025-07-26T23:34:33.000Z",
+            "Placement": {
+                "GroupName": "",
+                "Tenancy": "default",
+                "AvailabilityZone": "us-east-1d"
+            },
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "SubnetId": "subnet-0e1c38be3fc126c45",
+            "VpcId": "vpc-0ebec3083f1cec525",
+            "PrivateIpAddress": "172.31.30.179"
+        }
+    ]
+}
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ 
+
+
+(aws-dev-12) lucas@lucas-340XAA-350XAA-550XAA:~/AWS-DEV-12$ aws ec2 describe-instances --output table
+----------------------------------------------------------------------------
+|                             DescribeInstances                            |
++--------------------------------------------------------------------------+
+||                              Reservations                              ||
+|+-----------------------------+------------------------------------------+|
+||  OwnerId                    |  757598908396                            ||
+||  ReservationId              |  r-021995ce276175984                     ||
+|+-----------------------------+------------------------------------------+|
+|||                               Instances                              |||
+||+---------------------------+------------------------------------------+||
+|||  AmiLaunchIndex           |  0                                       |||
+|||  Architecture             |  x86_64                                  |||
+|||  BootMode                 |  uefi-preferred                          |||
+|||  ClientToken              |  c0de97eb-9ec7-45ca-a249-690ee1abbff6    |||
+|||  CurrentInstanceBootMode  |  legacy-bios                             |||
+|||  EbsOptimized             |  False                                   |||
+|||  EnaSupport               |  True                                    |||
+|||  Hypervisor               |  xen                                     |||
+|||  ImageId                  |  ami-08a6efd148b1f7504                   |||
+|||  InstanceId               |  i-071629c452ad76bec                     |||
+|||  InstanceType             |  t2.micro                                |||
+|||  KeyName                  |  pk-webserver-lucasedson                 |||
+|||  LaunchTime               |  2025-07-26T23:34:33.000Z                |||
+|||  PlatformDetails          |  Linux/UNIX                              |||
+|||  PrivateDnsName           |  ip-172-31-30-179.ec2.internal           |||
+|||  PrivateIpAddress         |  172.31.30.179                           |||
+|||  PublicDnsName            |  ec2-3-87-80-48.compute-1.amazonaws.com  |||
+|||  PublicIpAddress          |  3.87.80.48                              |||
+|||  RootDeviceName           |  /dev/xvda                               |||
+|||  RootDeviceType           |  ebs                                     |||
+|||  SourceDestCheck          |  True                                    |||
+|||  StateTransitionReason    |                                          |||
+|||  SubnetId                 |  subnet-0e1c38be3fc126c45                |||
+|||  UsageOperation           |  RunInstances                            |||
+|||  UsageOperationUpdateTime |  2025-07-26T23:34:33.000Z                |||
+|||  VirtualizationType       |  hvm                                     |||
+|||  VpcId                    |  vpc-0ebec3083f1cec525                   |||
+||+---------------------------+------------------------------------------+||
+||||                         BlockDeviceMappings                        ||||
+|||+----------------------------------+---------------------------------+|||
+||||  DeviceName                      |  /dev/xvda                      ||||
+|||+----------------------------------+---------------------------------+|||
+|||||                                Ebs                               |||||
+||||+-----------------------------+------------------------------------+||||
+|||||  AttachTime                 |  2025-07-26T23:34:34.000Z          |||||
+|||||  DeleteOnTermination        |  True                              |||||
+|||||  Status                     |  attached                          |||||
+|||||  VolumeId                   |  vol-0791fdd80dec06ffa             |||||
+||||+-----------------------------+------------------------------------+||||
+||||                  CapacityReservationSpecification                  ||||
+|||+------------------------------------------------------+-------------+|||
+||||  CapacityReservationPreference                       |  open       ||||
+|||+------------------------------------------------------+-------------+|||
+||||                             CpuOptions                             ||||
+|||+-----------------------------------------------------+--------------+|||
+||||  CoreCount                                          |  1           ||||
+||||  ThreadsPerCore                                     |  1           ||||
+|||+-----------------------------------------------------+--------------+|||
+||||                           EnclaveOptions                           ||||
+|||+------------------------------------+-------------------------------+|||
+||||  Enabled                           |  False                        ||||
+|||+------------------------------------+-------------------------------+|||
+||||                         HibernationOptions                         ||||
+|||+-----------------------------------------+--------------------------+|||
+||||  Configured                             |  False                   ||||
+|||+-----------------------------------------+--------------------------+|||
+||||                         MaintenanceOptions                         ||||
+|||+------------------------------------------+-------------------------+|||
+||||  AutoRecovery                            |  default                ||||
+||||  RebootMigration                         |  default                ||||
+|||+------------------------------------------+-------------------------+|||
+||||                           MetadataOptions                          ||||
+|||+----------------------------------------------+---------------------+|||
+||||  HttpEndpoint                                |  enabled            ||||
+||||  HttpProtocolIpv6                            |  disabled           ||||
+||||  HttpPutResponseHopLimit                     |  2                  ||||
+||||  HttpTokens                                  |  required           ||||
+||||  InstanceMetadataTags                        |  disabled           ||||
+||||  State                                       |  applied            ||||
+|||+----------------------------------------------+---------------------+|||
+||||                             Monitoring                             ||||
+|||+----------------------------+---------------------------------------+|||
+||||  State                     |  disabled                             ||||
+|||+----------------------------+---------------------------------------+|||
+||||                          NetworkInterfaces                         ||||
+|||+--------------------------+-----------------------------------------+|||
+||||  Description             |                                         ||||
+||||  InterfaceType           |  interface                              ||||
+||||  MacAddress              |  0a:ff:ff:ed:58:47                      ||||
+||||  NetworkInterfaceId      |  eni-0641fcfce78f563f9                  ||||
+||||  OwnerId                 |  757598908396                           ||||
+||||  PrivateDnsName          |  ip-172-31-30-179.ec2.internal          ||||
+||||  PrivateIpAddress        |  172.31.30.179                          ||||
+||||  SourceDestCheck         |  True                                   ||||
+||||  Status                  |  in-use                                 ||||
+||||  SubnetId                |  subnet-0e1c38be3fc126c45               ||||
+||||  VpcId                   |  vpc-0ebec3083f1cec525                  ||||
+|||+--------------------------+-----------------------------------------+|||
+|||||                            Association                           |||||
+||||+------------------+-----------------------------------------------+||||
+|||||  IpOwnerId       |  amazon                                       |||||
+|||||  PublicDnsName   |  ec2-3-87-80-48.compute-1.amazonaws.com       |||||
+|||||  PublicIp        |  3.87.80.48                                   |||||
+||||+------------------+-----------------------------------------------+||||
+|||||                            Attachment                            |||||
+||||+--------------------------+---------------------------------------+||||
+|||||  AttachTime              |  2025-07-26T23:34:33.000Z             |||||
+|||||  AttachmentId            |  eni-attach-0c76aebc9f2be8455         |||||
+|||||  DeleteOnTermination     |  True                                 |||||
+|||||  DeviceIndex             |  0                                    |||||
+|||||  NetworkCardIndex        |  0                                    |||||
+|||||  Status                  |  attached                             |||||
+||||+--------------------------+---------------------------------------+||||
+|||||                              Groups                              |||||
+||||+----------------------+-------------------------------------------+||||
+|||||  GroupId             |  sg-03c3bbe373f73e2f8                     |||||
+|||||  GroupName           |  lucas-grupo                              |||||
+||||+----------------------+-------------------------------------------+||||
+|||||                             Operator                             |||||
+||||+-----------------------------------+------------------------------+||||
+|||||  Managed                          |  False                       |||||
+||||+-----------------------------------+------------------------------+||||
+|||||                        PrivateIpAddresses                        |||||
+||||+------------------------+-----------------------------------------+||||
+|||||  Primary               |  True                                   |||||
+|||||  PrivateDnsName        |  ip-172-31-30-179.ec2.internal          |||||
+|||||  PrivateIpAddress      |  172.31.30.179                          |||||
+||||+------------------------+-----------------------------------------+||||
+||||||                           Association                          ||||||
+|||||+-----------------+----------------------------------------------+|||||
+||||||  IpOwnerId      |  amazon                                      ||||||
+||||||  PublicDnsName  |  ec2-3-87-80-48.compute-1.amazonaws.com      ||||||
+||||||  PublicIp       |  3.87.80.48                                  ||||||
+|||||+-----------------+----------------------------------------------+|||||
+||||                      NetworkPerformanceOptions                     ||||
+|||+---------------------------------------------+----------------------+|||
+||||  BandwidthWeighting                         |  default             ||||
+|||+---------------------------------------------+----------------------+|||
+||||                              Operator                              ||||
+|||+------------------------------------+-------------------------------+|||
+||||  Managed                           |  False                        ||||
+|||+------------------------------------+-------------------------------+|||
+||||                              Placement                             ||||
+|||+---------------------------------------+----------------------------+|||
+||||  AvailabilityZone                     |  us-east-1d                ||||
+||||  GroupName                            |                            ||||
+||||  Tenancy                              |  default                   ||||
+|||+---------------------------------------+----------------------------+|||
+||||                        PrivateDnsNameOptions                       ||||
+|||+---------------------------------------------------+----------------+|||
+||||  EnableResourceNameDnsAAAARecord                  |  False         ||||
+||||  EnableResourceNameDnsARecord                     |  False         ||||
+||||  HostnameType                                     |  ip-name       ||||
+|||+---------------------------------------------------+----------------+|||
+||||                           SecurityGroups                           ||||
+|||+-----------------------+--------------------------------------------+|||
+||||  GroupId              |  sg-03c3bbe373f73e2f8                      ||||
+||||  GroupName            |  lucas-grupo                               ||||
+|||+-----------------------+--------------------------------------------+|||
+||||                                State                               ||||
+|||+---------------------------+----------------------------------------+|||
+||||  Code                     |  16                                    ||||
+||||  Name                     |  running                               ||||
+|||+---------------------------+----------------------------------------+|||
+||||                                Tags                                ||||
+|||+-----------------+--------------------------------------------------+|||
+||||  Key            |  Name                                            ||||
+||||  Value          |  instancia-lucasedson                            ||||
+|||+-----------------+--------------------------------------------------+|||
