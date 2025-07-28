@@ -38,3 +38,57 @@ aws ec2 run-instances \
 ## Listar instancias
 aws ec2 describe-instances --output table
 ```
+
+## Cloudformation:
+
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Template CloudFormation para criar uma instância EC2.
+
+Resources:
+  MyEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: 't2.micro'
+      KeyName: 'pk-webserver-lucasedson'
+      ImageId: 'ami-08a6efd148b1f7504'
+      SecurityGroupIds:
+        - !Ref MySecurityGroup
+      Tags:
+        - Key: Name
+          Value: Instancia-LucasEdson-CloudFormation
+  MySecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Habilita acesso SSH na porta 22, 80 e 443.
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: '0.0.0.0/0'
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+
+      Tags:
+        - Key: Name
+          Value: lucas-sg-cloudformation
+
+Outputs:
+  InstanceId:
+    Description: O ID da instância EC2 criada.
+    Value: !Ref MyEC2Instance
+
+  PublicDnsName:
+    Description: O nome DNS público da instância EC2.
+    Value: !GetAtt MyEC2Instance.PublicDnsName
+
+  PublicIp:
+    Description: O endereço IP público da instância EC2.
+    Value: !GetAtt MyEC2Instance.PublicIp
+```
+
+```bash
+aws cloudformation create-stack --stack-name stack-lab1-lucasedson --template-body file://iac/template.yaml
+```
