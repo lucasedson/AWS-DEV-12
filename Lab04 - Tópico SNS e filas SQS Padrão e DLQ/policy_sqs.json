@@ -1,0 +1,29 @@
+{
+  "Version": "2012-10-17",
+  "Id": "__default_policy_ID",
+  "Statement": [
+    {
+      "Sid": "__owner_statement",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<COLE AQUI SEU ID CONTA DA AWS (12 DÍGITOS)>:root"
+      },
+      "Action": "SQS:*",
+      "Resource": "<COLE AQUI O ARN DA SUA FILA PRINCIPAL>"
+    },
+    {
+      "Sid": "Allow-SNS-SendMessage",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "sns.amazonaws.com"
+      },
+      "Action": "sqs:SendMessage",
+      "Resource": "<COLE AQUI O ARN DA SUA FILA PRINCIPAL>",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "< COLE AQUI O ARN DO SEU TÓPICO SNS >"
+        }
+      }
+    }
+  ]
+}
