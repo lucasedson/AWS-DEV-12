@@ -38,6 +38,6 @@ Observação: Lembre-se de que nos prints deve constar o seu nome para ser conta
 [x] - Associar Lambda ao EventBridge -> `print_eventbridge.png`
 ![print_eventbridge](print_event_bridge.png)
 
-[x] - Remover Recursos Criados -> `print_cloudtrail.png` ou `envent_history.json`
+[x] - Remover Recursos Criados -> `print_cloudtrail.png`
 ![print_cloudtrail](print_cloudtrail.png)
 
