@@ -44,3 +44,80 @@ Print das Filas SQS (principal) e Print das Filas SQS (DLQ):
 
 Print dos recursos EXCLUIDOS:
 ![print_delete](delete.png)
+
+
+## Extra:
+### Criando os recursos através do CloudFormation:
+**Diretório do Template:** `/iac/template.yaml`
+
+**Template:**
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Template CloudFormation para Lab04 - Topico SNS e filas SQS Padrao e DLQ
+
+Resources:
+  FilaDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: lab04-cfn-fila-dlq-lucasedson
+
+
+
+  FilaPadrao:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: lab04-cfn-fila-padrao-lucasedson
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt FilaDLQ.Arn
+        maxReceiveCount: 3
+
+  TopicoPadrao:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: lab04-cfn-topico-padrao-lucasedson
+
+  Assinatura:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      Endpoint: !GetAtt FilaPadrao.Arn
+      TopicArn: !Ref TopicoPadrao
+    
+
+  PoliticaFilaPadrao:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      Queues: 
+        - !Ref FilaPadrao
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: 'OwnerStatement'
+            Effect: Allow
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+            Action: 'SQS:*'
+            Resource: !GetAtt FilaPadrao.Arn
+          - Sid: 'AllowSNSSendMessage'
+            Effect: Allow
+            Principal:
+              Service: 'sns.amazonaws.com'
+            Action: 'sqs:SendMessage'
+            Resource: !GetAtt FilaPadrao.Arn
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref TopicoPadrao
+```
+
+**Criando a stack:**
+```bash
+aws cloudformation create-stack --stack-name lab04-cfn-lucasedson --template-body file://iac/template.yaml
+```
+
+**Saída:**
+
+![print_cfn](cloudformation.png)
+
+**Exclusão do recurso:**
+![print_delete_cfn](exclusaocfn.png)
