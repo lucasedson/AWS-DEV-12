@@ -1,0 +1,98 @@
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo de Adivinhação</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        color: #fff;
+        width: 100%;
+        max-width: 400px;
+      }
+      h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #ffdd57;
+      }
+      input[type="number"] {
+        padding: 10px;
+        font-size: 1.2em;
+        width: 80%;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+      }
+      button {
+        background-color: #ff6f61;
+        color: white;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #ff8c7b;
+      }
+      #resultado {
+        margin-top: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #ffdd57;
+      }
+      footer {
+        margin-top: 30px;
+        font-size: 0.9em;
+        color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Jogo de Adivinhação</h2>
+      <p>Eu pensei em um número de 1 a 10. Tente adivinhar!</p>
+      <input type="number" id="palpite" min="1" max="10" />
+      <button onclick="enviarPalpite()">Enviar</button>
+      <div id="resultado"></div>
+      <footer>
+        <p>Escola da Nuvem💙 - <b>Lucas Edson</b></p>
+      </footer>
+    </div>
+
+    <script>
+      function enviarPalpite() {
+        var palpite = document.getElementById("palpite").value;
+        let url = "https://biz4vnn7j5.execute-api.us-east-1.amazonaws.com/prod/jogo?palpite=" + palpite;
+
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("resultado").innerText =
+              "Resultado: " + data.resultado;
+          })
+          .catch((error) => {
+            document.getElementById("resultado").innerText =
+              "Erro ao comunicar com a API.";
+              
+          });
+      }
+    </script>
+  </body>
+</html>
