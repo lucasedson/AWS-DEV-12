@@ -1,0 +1,529 @@
+{
+  "Pedido-lucasedson": [
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U001"},
+          "Data do Pedido": {"S": "2025-10-01"},
+          "IDPedido": {"S": "P1001"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "120"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Acácias"},
+              "numero": {"S": "123"},
+              "bairro": {"S": "Jardim Florido"},
+              "cidade": {"S": "São Paulo"},
+              "estado": {"S": "SP"},
+              "tags": {"L": [{"S": "residencial"}, {"S": "entrega"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U001"},
+          "Data do Pedido": {"S": "2025-10-05"},
+          "IDPedido": {"S": "P1002"},
+          "Status": {"S": "Pendente"},
+          "ValorTotal": {"N": "60"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Av. dos Jacarandás"},
+              "numero": {"S": "456"},
+              "bairro": {"S": "Centro"},
+              "cidade": {"S": "Campinas"},
+              "estado": {"S": "SP"},
+              "tags": {"L": [{"S": "comercial"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U002"},
+          "Data do Pedido": {"S": "2025-09-25"},
+          "IDPedido": {"S": "P1003"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "200"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Travessa das Rosas"},
+              "numero": {"S": "789"},
+              "bairro": {"S": "Alto Alegre"},
+              "cidade": {"S": "Curitiba"},
+              "estado": {"S": "PR"},
+              "tags": {"L": [{"S": "residencial"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U001"},
+          "Data do Pedido": {"S": "2025-09-20"},
+          "IDPedido": {"S": "P1004"},
+          "Status": {"S": "Cancelado"},
+          "ValorTotal": {"N": "80"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Palmeiras"},
+              "numero": {"S": "321"},
+              "bairro": {"S": "Bela Vista"},
+              "cidade": {"S": "Rio de Janeiro"},
+              "estado": {"S": "RJ"},
+              "tags": {"L": [{"S": "residencial"}, {"S": "cliente novo"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U003"},
+          "Data do Pedido": {"S": "2025-10-01"},
+          "IDPedido": {"S": "P1005"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "150"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Av. Brasil"},
+              "numero": {"S": "654"},
+              "bairro": {"S": "Boa Esperança"},
+              "cidade": {"S": "Belo Horizonte"},
+              "estado": {"S": "MG"},
+              "tags": {"L": [{"S": "entrega rápida"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U004"},
+          "Data do Pedido": {"S": "2025-10-01"},
+          "IDPedido": {"S": "P1006"},
+          "Status": {"S": "Cancelado"},
+          "ValorTotal": {"N": "180"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua do Sol"},
+              "numero": {"S": "987"},
+              "bairro": {"S": "Vila Nova"},
+              "cidade": {"S": "Salvador"},
+              "estado": {"S": "BA"},
+              "tags": {"L": [{"S": "reentrega"}, {"S": "prioridade baixa"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U005"},
+          "Data do Pedido": {"S": "2025-11-10"},
+          "IDPedido": {"S": "P1007"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "95"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Avenida Paulista"},
+              "numero": {"S": "1001"},
+              "bairro": {"S": "Bela Vista"},
+              "cidade": {"S": "São Paulo"},
+              "estado": {"S": "SP"},
+              "tags": {"L": [{"S": "urgente"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U006"},
+          "Data do Pedido": {"S": "2025-11-15"},
+          "IDPedido": {"S": "P1008"},
+          "Status": {"S": "Pendente"},
+          "ValorTotal": {"N": "210"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua da Praia"},
+              "numero": {"S": "200"},
+              "bairro": {"S": "Centro"},
+              "cidade": {"S": "Florianópolis"},
+              "estado": {"S": "SC"},
+              "tags": {"L": [{"S": "fragil"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U007"},
+          "Data do Pedido": {"S": "2025-09-20"},
+          "IDPedido": {"S": "P1009"},
+          "Status": {"S": "Cancelado"},
+          "ValorTotal": {"N": "75"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Alameda Santos"},
+              "numero": {"S": "500"},
+              "bairro": {"S": "Jardins"},
+              "cidade": {"S": "São Paulo"},
+              "estado": {"S": "SP"},
+              "tags": {"L": [{"S": "devolução"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U008"},
+          "Data do Pedido": {"S": "2025-12-25"},
+          "IDPedido": {"S": "P1010"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "300"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Flores"},
+              "numero": {"S": "33"},
+              "bairro": {"S": "Copacabana"},
+              "cidade": {"S": "Rio de Janeiro"},
+              "estado": {"S": "RJ"},
+              "tags": {"L": [{"S": "natal"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U009"},
+          "Data do Pedido": {"S": "2025-07-03"},
+          "IDPedido": {"S": "P1011"},
+          "Status": {"S": "Pendente"},
+          "ValorTotal": {"N": "150"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Avenida Brasil"},
+              "numero": {"S": "1500"},
+              "bairro": {"S": "Funcionários"},
+              "cidade": {"S": "Belo Horizonte"},
+              "estado": {"S": "MG"},
+              "tags": {"L": [{"S": "grande porte"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U010"},
+          "Data do Pedido": {"S": "2025-08-10"},
+          "IDPedido": {"S": "P1012"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "85"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Palmeiras"},
+              "numero": {"S": "77"},
+              "bairro": {"S": "Barra"},
+              "cidade": {"S": "Salvador"},
+              "estado": {"S": "BA"},
+              "tags": {"L": [{"S": "frágil"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U011"},
+          "Data do Pedido": {"S": "2025-05-12"},
+          "IDPedido": {"S": "P1013"},
+          "Status": {"S": "Pendente"},
+          "ValorTotal": {"N": "220"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Acácias"},
+              "numero": {"S": "45"},
+              "bairro": {"S": "Centro"},
+              "cidade": {"S": "Porto Alegre"},
+              "estado": {"S": "RS"},
+              "tags": {"L": [{"S": "urgente"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U012"},
+          "Data do Pedido": {"S": "2025-06-18"},
+          "IDPedido": {"S": "P1014"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "130"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Avenida Rio Branco"},
+              "numero": {"S": "100"},
+              "bairro": {"S": "Centro"},
+              "cidade": {"S": "Vitória"},
+              "estado": {"S": "ES"},
+              "tags": {"L": [{"S": "presente"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U013"},
+          "Data do Pedido": {"S": "2025-07-22"},
+          "IDPedido": {"S": "P1015"},
+          "Status": {"S": "Cancelado"},
+          "ValorTotal": {"N": "65"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Flores"},
+              "numero": {"S": "88"},
+              "bairro": {"S": "Jardim América"},
+              "cidade": {"S": "Goiânia"},
+              "estado": {"S": "GO"},
+              "tags": {"L": [{"S": "devolução"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U014"},
+          "Data do Pedido": {"S": "2025-09-30"},
+          "IDPedido": {"S": "P1016"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "275"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Avenida Beira Rio"},
+              "numero": {"S": "300"},
+              "bairro": {"S": "Centro"},
+              "cidade": {"S": "Manaus"},
+              "estado": {"S": "AM"},
+              "tags": {"L": [{"S": "fragil"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U015"},
+          "Data do Pedido": {"S": "2025-02-14"},
+          "IDPedido": {"S": "P1017"},
+          "Status": {"S": "Pendente"},
+          "ValorTotal": {"N": "180"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua dos Coqueiros"},
+              "numero": {"S": "22"},
+              "bairro": {"S": "Praia Grande"},
+              "cidade": {"S": "Maceió"},
+              "estado": {"S": "AL"},
+              "tags": {"L": [{"S": "presente"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U016"},
+          "Data do Pedido": {"S": "2025-04-05"},
+          "IDPedido": {"S": "P1018"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "90"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Avenida Central"},
+              "numero": {"S": "1234"},
+              "bairro": {"S": "Industrial"},
+              "cidade": {"S": "Cuiabá"},
+              "estado": {"S": "MT"},
+              "tags": {"L": [{"S": "urgente"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U017"},
+          "Data do Pedido": {"S": "2025-08-19"},
+          "IDPedido": {"S": "P1019"},
+          "Status": {"S": "Cancelado"},
+          "ValorTotal": {"N": "45"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Palmeiras"},
+              "numero": {"S": "99"},
+              "bairro": {"S": "Centro"},
+              "cidade": {"S": "Teresina"},
+              "estado": {"S": "PI"},
+              "tags": {"L": [{"S": "devolução"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U018"},
+          "Data do Pedido": {"S": "2025-03-25"},
+          "IDPedido": {"S": "P1020"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "160"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Avenida das Américas"},
+              "numero": {"S": "2000"},
+              "bairro": {"S": "Barra da Tijuca"},
+              "cidade": {"S": "Rio de Janeiro"},
+              "estado": {"S": "RJ"},
+              "tags": {"L": [{"S": "presente"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U019"},
+          "Data do Pedido": {"S": "2025-11-11"},
+          "IDPedido": {"S": "P1021"},
+          "Status": {"S": "Pendente"},
+          "ValorTotal": {"N": "320"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Acácias"},
+              "numero": {"S": "55"},
+              "bairro": {"S": "Jardim Botânico"},
+              "cidade": {"S": "Curitiba"},
+              "estado": {"S": "PR"},
+              "tags": {"L": [{"S": "grande porte"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U020"},
+          "Data do Pedido": {"S": "2025-12-31"},
+          "IDPedido": {"S": "P1022"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "199"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Avenida Beira-Mar"},
+              "numero": {"S": "2025"},
+              "bairro": {"S": "Praia do Futuro"},
+              "cidade": {"S": "Fortaleza"},
+              "estado": {"S": "CE"},
+              "tags": {"L": [{"S": "réveillon"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U021"},
+          "Data do Pedido": {"S": "2025-01-07"},
+          "IDPedido": {"S": "P1023"},
+          "Status": {"S": "Pendente"},
+          "ValorTotal": {"N": "110"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Orquídeas"},
+              "numero": {"S": "15"},
+              "bairro": {"S": "Centro"},
+              "cidade": {"S": "Natal"},
+              "estado": {"S": "RN"},
+              "tags": {"L": [{"S": "promoção"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U022"},
+          "Data do Pedido": {"S": "2025-05-14"},
+          "IDPedido": {"S": "P1024"},
+          "Status": {"S": "Cancelado"},
+          "ValorTotal": {"N": "70"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Avenida Principal"},
+              "numero": {"S": "700"},
+              "bairro": {"S": "Vila Nova"},
+              "cidade": {"S": "Campo Grande"},
+              "estado": {"S": "MS"},
+              "tags": {"L": [{"S": "devolução"}]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ID do Usuário": {"S": "U023"},
+          "Data do Pedido": {"S": "2025-10-22"},
+          "IDPedido": {"S": "P1025"},
+          "Status": {"S": "Entregue"},
+          "ValorTotal": {"N": "250"},
+          "Endereco": {
+            "M": {
+              "rua": {"S": "Rua das Margaridas"},
+              "numero": {"S": "88"},
+              "bairro": {"S": "Jardim das Flores"},
+              "cidade": {"S": "João Pessoa"},
+              "estado": {"S": "PB"},
+              "tags": {"L": [{"S": "presente"}]}
+            }
+          }
+        }
+      }
+    }
+  ]
+}
